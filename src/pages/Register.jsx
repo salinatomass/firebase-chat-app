@@ -29,19 +29,7 @@ const Register = () => {
 
       uploadTask.on(
         'state_changed',
-        snapshot => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          console.log('Upload is ' + progress + '% done')
-          switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused')
-              break
-            case 'running':
-              console.log('Upload is running')
-              break
-          }
-        },
+        snapshot => {},
         error => {
           setErr(true)
         },
@@ -74,10 +62,10 @@ const Register = () => {
         <span className="logo">Chat App</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="display name" />
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
-          <input style={{ display: 'none' }} type="file" id="file" />
+          <input type="text" placeholder="display name" required />
+          <input type="email" placeholder="email" required />
+          <input type="password" placeholder="password" required />
+          <input style={{ display: 'none' }} type="file" id="file" required />
           <label htmlFor="file">
             <img src={AddAvatarImg} alt="Add avatar icon" />
             <span>Add an avatar</span>
