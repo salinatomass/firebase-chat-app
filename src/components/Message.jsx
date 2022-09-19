@@ -1,21 +1,26 @@
+import { useAuthContext } from '../context/AuthContext'
+import { useChatContext } from '../context/ChatContext'
+
 const Message = ({ message }) => {
+  const { currentUser } = useAuthContext()
+  const { data } = useChatContext()
+
+  const messageIsMine = message.senderId === currentUser.uid
+
   console.log(message)
 
   return (
-    <div className="message">
+    <div className={`message ${messageIsMine && 'owner'}`}>
       <div className="messageInfo">
         <img
-          src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600"
-          alt="random avatar"
+          src={messageIsMine ? currentUser.photoURL : data.user.photoURL}
+          alt={messageIsMine ? currentUser.displayName : data.user.displayName}
         />
         <span>just now</span>
       </div>
       <div className="messageContent">
-        <p>Hola</p>
-        <img
-          src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600"
-          alt="random avatar"
-        />
+        <p>{message.text}</p>
+        {message.img && <img src={message.img} alt="" />}
       </div>
     </div>
   )
