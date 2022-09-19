@@ -1,4 +1,6 @@
-const Message = () => {
+const Message = ({ message }) => {
+  console.log(message)
+
   return (
     <div className="message">
       <div className="messageInfo">
@@ -9,7 +11,7 @@ const Message = () => {
         <span>just now</span>
       </div>
       <div className="messageContent">
-        <p>hello</p>
+        <p>Hola</p>
         <img
           src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt="random avatar"
